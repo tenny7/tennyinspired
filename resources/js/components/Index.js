@@ -1,15 +1,15 @@
 import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
 import 'bootstrap/dist/css/bootstrap.css'
-import {Router} from '@reach/router'
-import firebase from './Firebase'
+import {Router, navigate} from '@reach/router'
+import firebase from './Firebase';
 
 
 import '../../css/index.css'
 import Navigation from './Navigation'
 import Books from './Books'
 import Login from './Login'
-import Register from './Register'
+import Signup from './Signup'
 
 
 
@@ -18,10 +18,12 @@ import Register from './Register'
 
 export default class Index extends Component {
 
-    constructor(){
-        super();
-        this.state = { 
-            user: null
+    constructor(props){
+        super(props);
+        this.state = {
+            user: null,
+            displayName: null,
+            userID: null
         };
     }
 
@@ -32,17 +34,34 @@ export default class Index extends Component {
             this.setState({user: FBUser});
         });
     }
+
+      registerUser(userName){
+
+        firebase.auth().onAuthStateChanged(FBUser=> {
+            FBUser.updateProfile({
+                displayName :  userName
+            }).then(() => {
+                this.setState({
+                    user:FBUser,
+                    displayName:FBUser.displayName,
+                    userID:FBUser.uid
+                });
+                navigate('/');
+            })
+        })
+    }
+
     render() {
         return (
             <>
-             <Navigation /> 
-            {this.state.user ? <h1>Hello {this.state.user}!</h1> : ""}
+             <Navigation />
+            {this.state.displayName !==null ? <h1 style={{alignText:'center'}}>Welcome {this.state.displayName}!</h1> : ""}
              <Router>
                  <Books path="/books"/>
                  <Login path="/login"/>
-                 <Register path="/register"/>
+                 <Signup path="/signup" registerUser={this.registerUser}/>
              </Router>
-            
+
             </>
         );
     }

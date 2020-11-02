@@ -12,7 +12,7 @@ export default class Navigation extends Component {
 
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav mr-auto">
-                            
+
                             <li className="nav-item active">
                                 <Link to="/" className="nav-link">
                                     <span className="sr-only">(current)</span>
@@ -30,17 +30,17 @@ export default class Navigation extends Component {
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link to="/register" className="nav-link">
+                                <Link to="/signup" className="nav-link">
                                     Register
                                 </Link>
                             </li>
-                            
-                           
-                        
+
+
+
                         </ul>
                     </div>
                 </nav>
-          
+
         );
     }
 }
