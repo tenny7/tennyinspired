@@ -3,7 +3,7 @@
  * includes React and other helpers. It's a great starting point while
  * building robust, powerful web applications using React + Laravel.
  */
-
+// require('../../public/tennyinspired-asset/js/jquery-351')
 require('./bootstrap');
 
 /**

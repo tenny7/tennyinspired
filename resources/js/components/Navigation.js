@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import {Link} from '@reach/router'
 
 export default class Navigation extends Component {
+
     render(){
+        const {userName, logOutUser} = this.props;
         return(
                 <nav className="navbar navbar-expand-lg navbar-light bg-light">
                     <a className="navbar-brand" href="#">Book App</a>
@@ -24,6 +26,8 @@ export default class Navigation extends Component {
                                     Books
                                 </Link>
                             </li>
+                            {userName == null?
+                            <>
                             <li className="nav-item">
                                 <Link to="/login" className="nav-link">
                                     Login
@@ -34,6 +38,17 @@ export default class Navigation extends Component {
                                     Register
                                 </Link>
                             </li>
+                            </> :
+
+
+                            <>
+                            <li className="nav-item">
+                                <Link to="/login" className="nav-link" onClick={e => logOutUser(e)} >
+                                    Logout
+                                </Link>
+                            </li>
+                            </>
+                            }
 
 
 

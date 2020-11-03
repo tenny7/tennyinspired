@@ -10,6 +10,7 @@ import Navigation from './Navigation'
 import Books from './Books'
 import Login from './Login'
 import Signup from './Signup'
+import Welcome from './Welcome'
 
 
 
@@ -25,18 +26,39 @@ export default class Index extends Component {
             displayName: null,
             userID: null
         };
+
+        this.registerUser = this.registerUser.bind(this);
+        this.logOutUser = this.logOutUser.bind(this);
     }
 
     componentDidMount(){
-        const ref = firebase.database().ref('user')
-        ref.on('value', snapshot => {
-            let FBUser = snapshot.val();
-            this.setState({user: FBUser});
+       firebase.auth().onAuthStateChanged(FBUser => {
+           if(FBUser){
+               this.setState({
+                user: FBUser,
+                displayName: FBUser.displayName,
+                userID: FBUser.uid
+               })
+           }
+       })
+    }
+    logOutUser = e =>{
+        e.preventDefault();
+        this.setState({
+            user: null,
+            displayName: null,
+            userID: null
+        });
+
+        firebase
+        .auth()
+        .signOut()
+        .then(() => {
+            navigate('/login');
         });
     }
 
-      registerUser(userName){
-
+    registerUser(userName){
         firebase.auth().onAuthStateChanged(FBUser=> {
             FBUser.updateProfile({
                 displayName :  userName
@@ -46,16 +68,20 @@ export default class Index extends Component {
                     displayName:FBUser.displayName,
                     userID:FBUser.uid
                 });
-                navigate('/');
+                navigate('/welcome');
             })
         })
     }
 
+
+
+
     render() {
         return (
             <>
-             <Navigation />
-            {this.state.displayName !==null ? <h1 style={{alignText:'center'}}>Welcome {this.state.displayName}!</h1> : ""}
+             <Navigation userName={this.state.user} logOutUser={this.logOutUser}/>
+
+            {this.state.displayName !==null ? <Welcome userName={this.state.displayName} /> : ""}
              <Router>
                  <Books path="/books"/>
                  <Login path="/login"/>

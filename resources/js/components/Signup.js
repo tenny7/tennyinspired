@@ -55,7 +55,8 @@ export default class Signup extends Component{
         return (
             <>
                 <div className="container">
-                <h2 className="text-center">Register</h2>
+                <br/>
+                <h2>Register</h2>
                     <div className="row">
 
                         <div className="col-6">
@@ -109,8 +110,8 @@ export default class Signup extends Component{
                                 onChange={this.handleChange}
                             />
 
-
-                               <button type="submit">Submit</button>
+                                <br/>
+                               <button type="submit" className="btn btn-success">Submit</button>
 
                             </form>
                         </div>
