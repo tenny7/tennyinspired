@@ -36,14 +36,14 @@ export default class Login extends Component{
         ).then(() => {
             this.setState(() => {
                 navigate('/welcome');
-        }).catch(error => {
+        })}).catch(error => {
             if(error.message !== null){
                 this.setState({errorMessage:error.message});
             }else {
                 this.setState({errorMessage:null});
             }
         });
-        })
+
     }
 
 

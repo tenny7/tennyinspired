@@ -89056,17 +89056,17 @@ var Login = /*#__PURE__*/function (_Component) {
       _Firebase__WEBPACK_IMPORTED_MODULE_1__["default"].auth().signInWithEmailAndPassword(registrationInfo.email, registrationInfo.password).then(function () {
         _this2.setState(function () {
           Object(_reach_router__WEBPACK_IMPORTED_MODULE_2__["navigate"])('/welcome');
-        })["catch"](function (error) {
-          if (error.message !== null) {
-            _this2.setState({
-              errorMessage: error.message
-            });
-          } else {
-            _this2.setState({
-              errorMessage: null
-            });
-          }
         });
+      })["catch"](function (error) {
+        if (error.message !== null) {
+          _this2.setState({
+            errorMessage: error.message
+          });
+        } else {
+          _this2.setState({
+            errorMessage: null
+          });
+        }
       });
     }
   }, {
