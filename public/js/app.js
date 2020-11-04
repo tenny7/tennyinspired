@@ -89099,6 +89099,9 @@ var Index = /*#__PURE__*/function (_Component) {
     }
   }, {
     key: "render",
+    // deleteingBook = deleteBook => {
+    //     firebase.database().ref(`books/${this.props.userID}`)
+    // }
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Navigation__WEBPACK_IMPORTED_MODULE_6__["default"], {
         userName: this.state.user,
