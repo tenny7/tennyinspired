@@ -1,9 +1,10 @@
 import React,{ Component } from 'react';
-
+import firebase from './Firebase'
 export default class Welcome extends Component{
-
-    render(){
+  render(){
         const {userName} = this.props;
+
+
         return (
             <>
             <div className="text-center mt-4">
