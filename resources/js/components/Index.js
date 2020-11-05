@@ -38,8 +38,31 @@ export default class Index extends Component {
                 user: FBUser,
                 displayName: FBUser.displayName,
                 userID: FBUser.uid
-               })
+               });
+
+               const bookRef = firebase.database().ref('books/' + FBUser.uid );
+               bookRef.on('value', snapshot => {
+                   let books = snapshot.val();
+                   let bookList = [];
+
+                   for(let item in books){
+                       bookList.push({
+                           bookID: item,
+                           bookName: books[item].bookName
+                       });
+                   }
+
+                   this.setState({
+                       books: bookList,
+                       howManyBooks : bookList.length
+                   })
+               });
+           } else {
+               this.setState({
+                   user:null
+               });
            }
+
        })
     }
     logOutUser = e =>{
@@ -73,6 +96,18 @@ export default class Index extends Component {
         })
     }
 
+    addBookName = bookName => {
+        const ref = firebase
+        .database()
+        .ref(`books/${this.state.user.uid}`);
+        ref.push({bookName: bookName});
+    }
+
+    // deleteingBook = deleteBook => {
+
+    //     firebase.database().ref(`books/${this.props.userID}`)
+    // }
+
 
 
 
@@ -83,7 +118,7 @@ export default class Index extends Component {
 
             {this.state.displayName !==null ? <Welcome userName={this.state.displayName} /> : ""}
              <Router>
-                 <Books path="/books"/>
+                 <Books path="/books" books={this.state.books} addBookName={this.addBookName} userName={this.user}/>
                  <Login path="/login"/>
                  <Signup path="/signup" registerUser={this.registerUser}/>
              </Router>
