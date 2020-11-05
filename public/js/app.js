@@ -26966,7 +26966,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, "body{\n  background-color: beige;\n}\n\n.img-edit {\n    height: 50em;\n    width: 100%;\n}\n", ""]);
+exports.push([module.i, "body{\r\n  background-color: beige;\r\n}\r\n\r\n.img-edit {\r\n    height: 50em;\r\n    width: 100%;\r\n}\r\n", ""]);
 
 // exports
 
@@ -89484,8 +89484,8 @@ var Welcome = /*#__PURE__*/function (_Component) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Tennyson\tennyinspired\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Tennyson\tennyinspired\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Ovie\tennyinspired\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Ovie\tennyinspired\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
