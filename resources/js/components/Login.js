@@ -69,6 +69,7 @@ export default class Login extends Component{
                                         value={this.state.email}
                                         onChange={this.handleChange}
                                     />
+                                    <br/>
                                     <input
                                         className="form-control"
                                         type="password"
@@ -77,6 +78,7 @@ export default class Login extends Component{
                                         onChange={this.handleChange}
 
                                     />
+                                     <br/>
                                     <button type="submit" className="btn btn-success">Login</button>
                                 </form>
                             </div>

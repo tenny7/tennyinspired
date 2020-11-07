@@ -1,5 +1,6 @@
 import React,{ Component } from 'react';
 import BookList from './BookList';
+import {GoTrashcan} from 'react-icons/go'
 
 export default class Books extends Component{
     constructor(props){
@@ -68,11 +69,17 @@ export default class Books extends Component{
                             ): null}
 
 
-                        <ul className="list-group">
-                            {this.props.books && this.props.books.length ? (
-                                <BookList books={this.props.books}/>
-                            ):null}
-                        </ul>
+                            <div className="list-group">
+                                {this.props.books && this.props.books.length ? (
+                                    <BookList 
+                                        userID={this.props.userID}
+                                        books={this.props.books} 
+                                        
+                                    />
+                                ):null}
+
+                                
+                            </div>
 
                         </div>
                     </div>

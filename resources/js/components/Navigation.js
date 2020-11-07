@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import {Link} from '@reach/router'
+import {FaBookOpen} from 'react-icons/fa'
+import {FaAmazon} from 'react-icons/fa'
+FaAmazon
+
 
 export default class Navigation extends Component {
 
@@ -7,7 +11,7 @@ export default class Navigation extends Component {
         const {userName, logOutUser} = this.props;
         return(
                 <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                    <a className="navbar-brand" href="#">Book App</a>
+                    <FaAmazon /> &nbsp;<a className="navbar-brand" href="#"> Book App</a>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
