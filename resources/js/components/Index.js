@@ -12,6 +12,7 @@ import Login from './Login'
 import Signup from './Signup'
 import Welcome from './Welcome'
 import CheckIn from './CheckIn';
+import Authors from './Authors';
 
 
 
@@ -123,6 +124,10 @@ export default class Index extends Component {
                     userID={this.state.userID}
                  />
                  <CheckIn path="/checkin/:userID/:bookID"
+
+                 />
+                 <Authors path="/authors/:userID/:bookID"
+                    adminUser={this.state.userID}
                  />
                  <Login path="/login"/>
                  <Signup path="/signup" registerUser={this.registerUser}/>
