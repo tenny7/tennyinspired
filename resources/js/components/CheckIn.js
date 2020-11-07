@@ -1,15 +1,17 @@
-import React,{ Component } from 'react';
+
+import React, {Component} from 'react'
 import firebase from './Firebase'
-import {navigate} from '@reach/router'
-import FormError from './FormError';
+import { navigate } from '@reach/router';
+
 
 export default class CheckIn extends Component{
     constructor(props){
-        super(props);
+    super(props);
 
         this.state = {
-            displayName : '',
-            email: ''
+            email : '',
+            displayName : ''
+
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -17,60 +19,61 @@ export default class CheckIn extends Component{
     }
 
     handleChange(e){
-        const itemName = e.target.name;
+        const itemName  = e.target.name;
         const itemValue = e.target.value;
 
-        this.setState({ [itemName] : itemValue})
+        this.setState({
+            [itemName] : itemValue
+        })
     }
 
     handleSubmit(e){
-
         e.preventDefault();
-        const ref = firebase.auth().database(`books/${this.props.userID}/${this.}`).ref();
+        const ref = firebase.database().ref(`books/${this.props.userID}/${this.props.bookID}/attendies`);
         ref.push({
-
+            attendeeName : this.state.displayName,
+            attendeeEmail: this.state.email
         });
 
+        navigate(`/attendees/${this.props.userID}/${this.props.bookID}`);
 
     }
 
 
     render(){
-        return (
+        return(
             <>
-            <br/>
-                <div className="container">
-                    <br/>
-                    <h2>Login</h2>
-                        <div className="row">
-
-                            <div className="col-6">
-                            {this.state.errorMessage != null ? (
-                                    <FormError theMessage={this.state.errorMessage}/>
-                                ): null }
-                                <form onClick={this.handleSubmit}>
-
-                                    <input
-                                        className="form-control"
-                                        type="email"
-                                        name="email"
-                                        value={this.state.email}
-                                        onChange={this.handleChange}
-                                    />
-                                    <input
-                                        className="form-control"
-                                        type="password"
-                                        name="password"
-                                        value={this.state.password}
-                                        onChange={this.handleChange}
-
-                                    />
-                                    <button type="submit" className="btn btn-success">Login</button>
-                                </form>
-                            </div>
-                        </div>
+                <h4>Check In</h4>
+                <form onSubmit={this.handleSubmit}>
+                    <div className="form-group"> <label htmlFor="name"> Display name</label>
+                        <input type="text"
+                            className="form-control"
+                            placeholder="Enter Name"
+                            name="displayName"
+                            value={this.state.displayName}
+                            onChange={this.handleChange}
+                        />
                     </div>
+
+                    <div className="form-group">
+                        <label htmlFor="exampleInputPassword1">Email</label>
+                        <input
+                            type="email"
+                            className="form-control"
+                            name="email"
+                            placeholder="Email"
+                            value={this.state.email}
+                            onChange={this.handleChange}
+                        />
+                    </div>
+
+                    <button type="submit" className="btn btn-primary">
+                        Submit
+                    </button>
+                </form>
             </>
         );
     }
+
+
 }

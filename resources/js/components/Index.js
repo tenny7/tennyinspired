@@ -11,6 +11,7 @@ import Books from './Books'
 import Login from './Login'
 import Signup from './Signup'
 import Welcome from './Welcome'
+import CheckIn from './CheckIn';
 
 
 
@@ -103,9 +104,7 @@ export default class Index extends Component {
         ref.push({bookName: bookName});
     }
 
-    deleteingBook = deleteBook => {
-        firebase.database().ref(`books/${this.props.userID}`)
-    }
+
 
 
 
@@ -117,7 +116,14 @@ export default class Index extends Component {
 
             {this.state.displayName !==null ? <Welcome userName={this.state.displayName} /> : ""}
              <Router>
-                 <Books path="/books" books={this.state.books} addBookName={this.addBookName} userName={this.user}/>
+                 <Books path="/books"
+                    books={this.state.books}
+                    addBookName={this.addBookName}
+                    userName={this.user}
+                    userID={this.state.userID}
+                 />
+                 <CheckIn path="/checkin/:userID/:bookID"
+                 />
                  <Login path="/login"/>
                  <Signup path="/signup" registerUser={this.registerUser}/>
              </Router>
