@@ -103,10 +103,9 @@ export default class Index extends Component {
         ref.push({bookName: bookName});
     }
 
-    // deleteingBook = deleteBook => {
-
-    //     firebase.database().ref(`books/${this.props.userID}`)
-    // }
+    deleteingBook = deleteBook => {
+        firebase.database().ref(`books/${this.props.userID}`)
+    }
 
 
 
