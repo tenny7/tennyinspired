@@ -12,6 +12,7 @@ import Login from './Login'
 import Signup from './Signup'
 import Welcome from './Welcome'
 import CheckIn from './CheckIn';
+import Authors from './Authors';
 
 
 
@@ -104,7 +105,7 @@ export default class Index extends Component {
         ref.push({bookName: bookName});
     }
 
-    
+
 
 
 
@@ -116,13 +117,17 @@ export default class Index extends Component {
 
             {this.state.displayName !==null ? <Welcome userName={this.state.displayName} /> : ""}
              <Router>
-                 <Books path="/books" 
-                    books={this.state.books} 
-                    addBookName={this.addBookName} 
+                 <Books path="/books"
+                    books={this.state.books}
+                    addBookName={this.addBookName}
                     userName={this.user}
-                    userID={this.state.userID} 
+                    userID={this.state.userID}
                  />
-                 <CheckIn path="/checkin/:userID/:bookID" 
+                 <CheckIn path="/checkin/:userID/:bookID"
+
+                 />
+                 <Authors path="/authors/:userID/:bookID"
+                    adminUser={this.state.userID}
                  />
                  <Login path="/login"/>
                  <Signup path="/signup" registerUser={this.registerUser}/>

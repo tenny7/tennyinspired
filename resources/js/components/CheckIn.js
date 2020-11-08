@@ -1,3 +1,4 @@
+
 import React, {Component} from 'react'
 import firebase from './Firebase'
 import { navigate } from '@reach/router';
@@ -10,6 +11,7 @@ export default class CheckIn extends Component{
         this.state = {
             email : '',
             displayName : ''
+
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -34,41 +36,48 @@ export default class CheckIn extends Component{
         });
 
         navigate(`/attendees/${this.props.userID}/${this.props.bookID}`);
-        
+
     }
 
 
     render(){
         return(
             <>
-                <h4>Check In</h4>
-                <form onSubmit={this.handleSubmit}>
-                    <div className="form-group"> <label htmlFor="name"> Display name</label>
-                        <input type="text" 
-                            className="form-control"  
-                            placeholder="Enter Name"
-                            name="displayName"
-                            value={this.state.displayName} 
-                            onChange={this.handleChange}
-                        />
-                    </div>
+            <div className="container">
+                <div className="row d-flex justify-content-center mt-4">
+                    <div className="col-md-4">
 
-                    <div className="form-group">
-                        <label htmlFor="exampleInputPassword1">Email</label>
-                        <input 
-                            type="email" 
-                            className="form-control"
-                            name="email" 
-                            placeholder="Email"
-                            value={this.state.email} 
-                            onChange={this.handleChange} 
-                        />
+                    <h4>Check In</h4>
+                        <form onSubmit={this.handleSubmit}>
+                            <div className="form-group"> <label htmlFor="name"> Display name</label>
+                                <input type="text"
+                                    className="form-control"
+                                    placeholder="Enter Name"
+                                    name="displayName"
+                                    value={this.state.displayName}
+                                    onChange={this.handleChange}
+                                />
+                            </div>
+
+                            <div className="form-group">
+                                <label htmlFor="exampleInputPassword1">Email</label>
+                                <input
+                                    type="email"
+                                    className="form-control"
+                                    name="email"
+                                    placeholder="Email"
+                                    value={this.state.email}
+                                    onChange={this.handleChange}
+                                />
+                            </div>
+
+                            <button type="submit" className="btn btn-primary">
+                                Submit
+                            </button>
+                        </form>
                     </div>
-                    
-                    <button type="submit" className="btn btn-primary">
-                        Submit
-                    </button>
-                </form>
+                </div>
+            </div>
             </>
         );
     }
