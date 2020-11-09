@@ -41,7 +41,7 @@ export default class Books extends Component{
                 <br/>
                 <div className="container mt-4">
                     <div className="row justify-content-center">
-                        <div className="col-md-4 text-center">
+                        <div className="col-md-6 text-center">
                         <form onSubmit={this.handleSubmit}>
                                 <div className="input-group mb-3">
                                     <input

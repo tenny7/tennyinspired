@@ -1,8 +1,16 @@
 body{
-  background-color: beige;
+  background-color: rgb(12, 12, 12);
 }
 
 .img-edit {
     height: 50em;
     width: 100%;
+}
+
+label {
+  color: #ffffff;
+}
+
+h4, h1 {
+  color: #ffffff;
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import firebase from './Firebase';
 import { GoTrashcan } from 'react-icons/go';
-import { FaLink } from 'react-icons/fa';
+import { FaLink, FaUser } from 'react-icons/fa';
 import { navigate } from '@reach/router';
 
 
@@ -49,6 +49,14 @@ export default class BookList extends Component{
                             onClick={ () => navigate(`/checkin/${this.props.userID}/${item.bookID}`) }
                         >
                             <FaLink />  
+                        </button>&nbsp;
+
+                        <button
+                            className="btn btn-sm btn-outline-secondary"
+                            title="Authors"
+                            onClick={ () => navigate(`/authors/${this.props.userID}/${item.bookID}`) }
+                        >
+                            <FaUser />  
                         </button>&nbsp;
                         
                         {item.bookName}

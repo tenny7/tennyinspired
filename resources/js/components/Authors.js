@@ -1,5 +1,6 @@
 import React,{ Component } from 'react';
 import firebase from './Firebase'
+import AuthorsList from './AuthorsList';
 
 
 export default class Authors extends Component{
@@ -12,7 +13,25 @@ export default class Authors extends Component{
     }
 
     componentDidMount(){
-        const ref = firebase.database().ref(`books/${this.props.userID}/${this.props.bookID}/author`);
+        const ref = firebase
+        .database()
+        .ref(`books/${this.props.userID}/${this.props.bookID}/authors`);
+
+        ref.on('value', snapshot => {
+            let authors = snapshot.val();
+            let authorsList = [];
+            for(let item in authors){
+                authorsList.push({
+                    authorID: item,
+                    authorName: authors[item].authorName,
+                    authorEmail: authors[item].authorEmail
+                });
+
+                this.setState({
+                    displayAuthors: authorsList
+                })
+            }
+        })
     }
     render(){
         return(
@@ -26,7 +45,12 @@ export default class Authors extends Component{
                 </div>
             </div>
 
-            Authors Goes here
+            <AuthorsList 
+                adminUser={this.props.adminUser}
+                bookID={this.props.bookID}
+                userID={this.props.userID} 
+                authors={this.state.displayAuthors}
+            />
         </div>
         </>
         );

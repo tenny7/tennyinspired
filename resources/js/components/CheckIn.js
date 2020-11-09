@@ -29,13 +29,13 @@ export default class CheckIn extends Component{
 
     handleSubmit(e){
         e.preventDefault();
-        const ref = firebase.database().ref(`books/${this.props.userID}/${this.props.bookID}/attendies`);
+        const ref = firebase.database().ref(`books/${this.props.userID}/${this.props.bookID}/authors`);
         ref.push({
-            attendeeName : this.state.displayName,
-            attendeeEmail: this.state.email
+            authorName : this.state.displayName,
+            authorEmail: this.state.email
         });
 
-        navigate(`/attendees/${this.props.userID}/${this.props.bookID}`);
+        navigate(`/authors/${this.props.userID}/${this.props.bookID}`);
 
     }
 
