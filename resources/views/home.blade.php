@@ -16,6 +16,13 @@
 
                     {{ __('You are logged in!') }}
                 </div>
+
+                <a href={`mailto:${item.authorEmail}`}
+                                            className="btn btn-sm btn-outline-secondary"
+                                            title="Mail Author"   
+                                        >
+                                        <GoMail />  
+                                        </a>
             </div>
         </div>
     </div>

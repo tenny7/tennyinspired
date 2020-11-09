@@ -32,7 +32,8 @@ export default class CheckIn extends Component{
         const ref = firebase.database().ref(`books/${this.props.userID}/${this.props.bookID}/authors`);
         ref.push({
             authorName : this.state.displayName,
-            authorEmail: this.state.email
+            authorEmail: this.state.email,
+            star: false
         });
 
         navigate(`/authors/${this.props.userID}/${this.props.bookID}`);

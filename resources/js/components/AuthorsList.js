@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import firebase from './Firebase';
-import { GoTrashcan } from 'react-icons/go';
+import { GoTrashcan, GoStar } from 'react-icons/go';
 
 
 
@@ -22,6 +22,17 @@ export default class AuthorsList extends Component{
         .ref(`books/${adminUser}/${whichBook}/authors/${whichAuthor}`);
         ref.remove();
     };
+
+    toggleStar = (e, star, whichBook, whichAuthor) => {
+        e.preventDefault();
+        const adminUser = this.props.adminUser
+        const ref = firebase.database().ref(`books/${adminUser}/${whichBook}/authors/${whichAuthor}/star`);
+        if(star === undefined){
+            ref.set(true);
+        } else {
+            ref.set(!star)
+        }
+    }
 
   render(){
 
@@ -46,6 +57,16 @@ export default class AuthorsList extends Component{
                                         >
                                             <GoTrashcan />
                                         </button>
+                                        <button
+                                                className={'btn btn-sm ' + (item.star ? 'btn-info' : 'btn-outline-secondary') }
+                                                title="Give star rating"
+                                                onClick={
+                                                    e => this.toggleStar(e, item.star, this.props.bookID, item.authorID)}
+                                        >
+                                            <GoStar />
+                                        </button>
+
+                                        
                                     </div>
                                 )}
 

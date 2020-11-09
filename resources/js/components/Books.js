@@ -42,6 +42,7 @@ export default class Books extends Component{
                 <div className="container mt-4">
                     <div className="row justify-content-center">
                         <div className="col-md-6 text-center">
+                        
                         <form onSubmit={this.handleSubmit}>
                                 <div className="input-group mb-3">
                                     <input
@@ -60,6 +61,8 @@ export default class Books extends Component{
                                         > + Add</button>
                                         {/* <span className="input-group-text"> + Add</span> */}
                                     </div>
+
+                                    
                                 </div>
                             </form>
 
@@ -67,6 +70,8 @@ export default class Books extends Component{
                             {this.props.books && this.props.books.length ? (
                                 <h4 className="py-2">Your books</h4>
                             ): null}
+
+                            
 
 
                             <div className="list-group">

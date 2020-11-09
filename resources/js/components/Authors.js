@@ -8,8 +8,11 @@ export default class Authors extends Component{
         super(props);
 
         this.state = {
-            displayAuthors : []
+            displayAuthors : [],
+            searchQuery: ''
         }
+
+        this.handleChange = this.handleChange.bind(this);
     }
 
     componentDidMount(){
@@ -24,7 +27,8 @@ export default class Authors extends Component{
                 authorsList.push({
                     authorID: item,
                     authorName: authors[item].authorName,
-                    authorEmail: authors[item].authorEmail
+                    authorEmail: authors[item].authorEmail,
+                    star : authors[item].star
                 });
 
                 this.setState({
@@ -33,8 +37,25 @@ export default class Authors extends Component{
             }
         })
     }
+
+    handleChange(e){
+        const itemName  = e.target.name;
+        const itemValue = e.target.value;
+
+        this.setState({
+            [itemName] : itemValue
+        })
+    }
+
+    
     render(){
-        return(
+
+        const dataFilter = item => item.authorName
+            .toLowerCase()
+            .match(this.state.searchQuery.toLowerCase()) && true;
+
+            const filteredAuthors =  this.state.displayAuthors.filter(dataFilter);
+    return(
         <>
         <div className="container mt-4">
             <div className="row justify-content-center">
@@ -45,11 +66,26 @@ export default class Authors extends Component{
                 </div>
             </div>
 
+            <div className="input-group mb-3">
+
+                            <input
+                                className="form-control"
+                                name="searchQuery"
+                                type="text"
+                                placeholder="Search for a book name"
+                                value={this.state.searchQuery}
+                                onChange={this.handleChange}
+
+                            />
+
+                                    
+                            </div>
+
             <AuthorsList 
                 adminUser={this.props.adminUser}
                 bookID={this.props.bookID}
                 userID={this.props.userID} 
-                authors={this.state.displayAuthors}
+                authors={filteredAuthors}
             />
         </div>
         </>
