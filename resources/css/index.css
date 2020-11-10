@@ -14,3 +14,8 @@ label {
 h4, h1 {
   color: #ffffff;
 }
+
+#profile-photo {
+  height: 5em;
+  width: 5em;
+}

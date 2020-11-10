@@ -1,6 +1,7 @@
 import React,{ Component } from 'react';
 import firebase from './Firebase'
 import AuthorsList from './AuthorsList';
+import { GrUndo } from "react-icons/gr";
 
 
 export default class Authors extends Component{
@@ -9,10 +10,12 @@ export default class Authors extends Component{
 
         this.state = {
             displayAuthors : [],
-            searchQuery: ''
+            searchQuery: '',
+
         }
 
         this.handleChange = this.handleChange.bind(this);
+        this.resetQuery = this.resetQuery.bind(this);
     }
 
     componentDidMount(){
@@ -47,6 +50,12 @@ export default class Authors extends Component{
         })
     }
 
+    resetQuery(){
+        this.setState({
+            searchQuery : ''
+        });
+    }
+
     
     render(){
 
@@ -68,18 +77,26 @@ export default class Authors extends Component{
 
             <div className="input-group mb-3">
 
-                            <input
-                                className="form-control"
-                                name="searchQuery"
-                                type="text"
-                                placeholder="Search for a book name"
-                                value={this.state.searchQuery}
-                                onChange={this.handleChange}
+                <input
+                    className="form-control"
+                    name="searchQuery"
+                    type="text"
+                    placeholder="Search for a book name"
+                    value={this.state.searchQuery}
+                    onChange={this.handleChange}
 
-                            />
+                />
+                <div className="input-group-append">
+                   <button
+                        className="btn btn-info btn-md"
+                        onClick={() => this.resetQuery() }
+                   >
+                       <GrUndo />
+                   </button>
+                </div>
 
                                     
-                            </div>
+            </div>
 
             <AuthorsList 
                 adminUser={this.props.adminUser}
